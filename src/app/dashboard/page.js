@@ -16,7 +16,9 @@ export default function Dashboard() {
     alert('Downloading all translations as ZIP file...');
     // In real implementation, this would trigger a ZIP download
   };
+import TranslationDashboard from '../../components/TranslationDashboard';
 
+export default function DashboardPage() {
   return (
     <div className="min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,6 +124,8 @@ export default function Dashboard() {
           </div>
         </motion.div>
       </div>
+    <div>
+      <TranslationDashboard />
     </div>
   );
 }
