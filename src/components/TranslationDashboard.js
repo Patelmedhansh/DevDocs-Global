@@ -162,18 +162,18 @@ export default function TranslationDashboard() {
   const currentTranslation = translations[currentView];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-black py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            🌍 Live Translation Dashboard
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
+            🌍 Live Translation <span className="gradient-text">Dashboard</span>
           </h1>
-          <p className="text-gray-600">
+          <p className="text-xl text-gray-300">
             Upload or paste your document. Supports any source language. Translate to multiple languages instantly.
           </p>
         </motion.div>
@@ -183,7 +183,7 @@ export default function TranslationDashboard() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6"
+            className="bg-red-900/30 border border-red-700 text-red-400 px-4 py-3 rounded-lg mb-6"
           >
             ⚠️ {error}
           </motion.div>
@@ -194,13 +194,13 @@ export default function TranslationDashboard() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
-          className="bg-white rounded-lg shadow-lg p-6 mb-6"
+          className="bg-gray-900 rounded-lg border border-gray-800 p-6 mb-6"
         >
-          <h2 className="text-xl font-bold mb-4">📄 Document Input</h2>
+          <h2 className="text-xl font-semibold text-white mb-4">📄 Document Input</h2>
 
           <div className="grid md:grid-cols-2 gap-4 mb-4">
             {/* File Upload */}
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-primary cursor-pointer">
+            <div className="border-2 border-dashed border-gray-700 rounded-lg p-4 text-center hover:border-purple-600 cursor-pointer transition-colors">
               <input
                 type="file"
                 accept=".md,.txt"
@@ -210,22 +210,22 @@ export default function TranslationDashboard() {
               />
               <label htmlFor="fileInput" className="cursor-pointer">
                 <div className="text-3xl mb-2">📤</div>
-                <p className="text-sm text-gray-600">Upload markdown or text file</p>
+                <p className="text-sm text-gray-400">Upload markdown or text file</p>
               </label>
             </div>
 
             {/* Language Detection */}
             <div className="flex flex-col justify-center">
               {detectedLanguage ? (
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <p className="text-sm text-gray-600">Detected Language:</p>
-                  <p className="text-lg font-bold text-blue-600">{detectedLanguage.toUpperCase()}</p>
+                <div className="bg-purple-600/20 p-4 rounded-lg border border-purple-600/30">
+                  <p className="text-sm text-gray-400">Detected Language:</p>
+                  <p className="text-lg font-semibold text-purple-400">{detectedLanguage.toUpperCase()}</p>
                 </div>
               ) : (
                 <button
                   onClick={detectLanguageHandler}
                   disabled={!docContent || loading}
-                  className="bg-secondary hover:bg-cyan-600 disabled:bg-gray-300 text-white px-4 py-3 rounded-lg font-medium transition-all"
+                  className="bg-purple-600 hover:bg-purple-700 disabled:bg-gray-800 disabled:text-gray-500 disabled:cursor-not-allowed text-white px-4 py-3 rounded-lg font-medium transition-colors"
                 >
                   🔍 Detect Language
                 </button>
@@ -238,7 +238,7 @@ export default function TranslationDashboard() {
             value={docContent}
             onChange={(e) => setDocContent(e.target.value)}
             placeholder="Paste your document content here... (supports any language)"
-            className="w-full h-40 p-4 border border-gray-300 rounded-lg font-mono text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full h-40 p-4 bg-gray-800 border border-gray-700 rounded-lg font-mono text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
           />
         </motion.div>
 
@@ -247,9 +247,9 @@ export default function TranslationDashboard() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="bg-white rounded-lg shadow-lg p-6 mb-6"
+          className="bg-gray-900 rounded-lg border border-gray-800 p-6 mb-6"
         >
-          <h2 className="text-xl font-bold mb-4">🗣️ Target Languages</h2>
+          <h2 className="text-xl font-semibold text-white mb-4">🗣️ Target Languages</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {SUPPORTED_LANGUAGES
               .filter(lang => lang.code !== (sourceLanguage === 'auto' ? detectedLanguage : sourceLanguage))
@@ -257,10 +257,10 @@ export default function TranslationDashboard() {
                 <button
                   key={lang.code}
                   onClick={() => toggleTargetLanguage(lang.code)}
-                  className={`p-3 rounded-lg border-2 font-medium transition-all ${
+                  className={`p-3 rounded-lg border-2 font-medium transition-colors ${
                     selectedTargetLangs.includes(lang.code)
-                      ? 'border-primary bg-primary text-white'
-                      : 'border-gray-200 bg-white text-gray-700 hover:border-primary'
+                      ? 'border-purple-600 bg-purple-600 text-white'
+                      : 'border-gray-700 bg-gray-800 text-gray-300 hover:border-purple-600'
                   }`}
                 >
                   {lang.flag} {lang.name}
@@ -276,7 +276,7 @@ export default function TranslationDashboard() {
           transition={{ delay: 0.3 }}
           onClick={handleTranslate}
           disabled={loading || !docContent}
-          className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg disabled:opacity-50 text-white font-bold px-6 py-4 rounded-lg mb-6 transition-all transform hover:scale-105"
+          className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-gray-800 disabled:text-gray-500 disabled:cursor-not-allowed text-white font-semibold px-6 py-4 rounded-lg mb-6 transition-colors"
         >
           {loading ? '🔄 Translating...' : '✨ Translate Now'}
         </motion.button>
@@ -289,31 +289,31 @@ export default function TranslationDashboard() {
             className="space-y-6"
           >
             {/* Source + Translated View */}
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
               {/* Source Document */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <div className="bg-gray-800 text-white px-4 py-3 flex items-center space-x-2">
+              <div className="bg-gray-900 rounded-lg border border-gray-800 overflow-hidden">
+                <div className="bg-gray-800 text-white px-6 py-4 border-b border-gray-700 flex items-center space-x-2">
                   <span>📄</span>
                   <h3 className="font-semibold">Source ({detectedLanguage?.toUpperCase()})</h3>
                 </div>
-                <div className="h-[600px] overflow-auto p-6 bg-white">
+                <div className="h-[600px]">
                   <DocViewer doc={{ content: docContent, path: 'source' }} />
                 </div>
               </div>
 
               {/* Translated Document */}
-              <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <div className="bg-primary text-white px-4 py-3">
-                  <div className="flex items-center justify-between">
+              <div className="bg-gray-900 rounded-lg border border-gray-800 overflow-hidden">
+                <div className="bg-purple-600 text-white px-6 py-4 border-b border-purple-700">
+                  <div className="flex items-center justify-between flex-wrap gap-4">
                     <div className="flex items-center space-x-2">
                       <span>🌐</span>
                       <select
                         value={currentView}
                         onChange={(e) => setCurrentView(e.target.value)}
-                        className="bg-primary text-white font-semibold border-none focus:outline-none cursor-pointer"
+                        className="bg-purple-600 text-white font-semibold border-none focus:outline-none cursor-pointer"
                       >
                         {selectedTargetLangs.map(lang => (
-                          <option key={lang} value={lang}>
+                          <option key={lang} value={lang} style={{ backgroundColor: '#9333ea', color: '#ffffff' }}>
                             {SUPPORTED_LANGUAGES.find(l => l.code === lang)?.flag} {lang.toUpperCase()}
                           </option>
                         ))}
@@ -324,7 +324,7 @@ export default function TranslationDashboard() {
                     )}
                   </div>
                 </div>
-                <div className="h-[600px] overflow-auto p-6 bg-white">
+                <div className="h-[600px]">
                   {currentTranslation && (
                     <DocViewer doc={{ content: currentTranslation, path: 'translated' }} />
                   )}
@@ -335,22 +335,22 @@ export default function TranslationDashboard() {
             {/* Download Button */}
             <button
               onClick={downloadTranslations}
-              className="w-full bg-accent hover:bg-green-600 text-white font-bold px-6 py-4 rounded-lg transition-all flex items-center justify-center space-x-2"
+              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-4 rounded-lg transition-colors flex items-center justify-center space-x-2 mb-6"
             >
               <span>📦</span>
               <span>Download All Translations</span>
             </button>
 
             {/* Quality Scores Summary */}
-            <div className="bg-white rounded-lg shadow-lg p-6">
-              <h3 className="text-lg font-bold mb-4">📊 Quality Scores</h3>
+            <div className="bg-gray-900 rounded-lg border border-gray-800 p-6">
+              <h3 className="text-lg font-semibold text-white mb-4">📊 Quality Scores</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {Object.entries(scores).map(([lang, score]) => (
-                  <div key={lang} className="text-center p-4 bg-gray-50 rounded-lg">
-                    <p className="text-sm text-gray-600 mb-2">
+                  <div key={lang} className="text-center p-4 bg-gray-800 rounded-lg border border-gray-700">
+                    <p className="text-sm text-gray-400 mb-2">
                       {SUPPORTED_LANGUAGES.find(l => l.code === lang)?.flag} {lang.toUpperCase()}
                     </p>
-                    <p className="text-2xl font-bold text-primary">{score}%</p>
+                    <p className="text-2xl font-bold text-purple-400">{score}%</p>
                   </div>
                 ))}
               </div>

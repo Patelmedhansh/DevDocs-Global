@@ -1,22 +1,32 @@
 'use client';
 
+import { motion } from 'framer-motion';
+
 export default function ScoreBar({ score }) {
   const getColor = (score) => {
-    if (score >= 95) return 'bg-green-500';
-    if (score >= 90) return 'bg-yellow-500';
-    return 'bg-red-500';
+    if (score >= 95) return 'bg-purple-600';
+    if (score >= 90) return 'bg-purple-500';
+    return 'bg-purple-400';
   };
 
   return (
-    <div className="flex items-center space-x-3">
-      <span className="text-sm font-medium text-gray-700">Quality Score:</span>
-      <div className="flex-1 bg-gray-200 rounded-full h-2.5 max-w-xs">
-        <div
-          className={`h-2.5 rounded-full ${getColor(score)} transition-all duration-500`}
-          style={{ width: `${score}%` }}
-        ></div>
+    <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-2">
+        <span className="text-sm font-medium text-gray-300">Quality Score:</span>
+        <div className="px-3 py-1 rounded-lg bg-purple-600/20 border border-purple-600/30">
+          <span className="text-sm font-semibold text-purple-400">
+            {score}%
+          </span>
+        </div>
       </div>
-      <span className="text-sm font-bold text-gray-900">{score}%</span>
+      <div className="flex-1 bg-gray-800 rounded-full h-2 max-w-xs overflow-hidden">
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: `${score}%` }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className={`h-full rounded-full ${getColor(score)}`}
+        ></motion.div>
+      </div>
     </div>
   );
 }
