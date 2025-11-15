@@ -1,0 +1,33 @@
+{
+  "$schema": "https://lingo.dev/schema/i18n.json",
+  "version": "1.10",
+  "locale": {
+    "source": "en",
+    "targets": [
+      "es",
+      "fr",
+      "de",
+      "ja",
+      "hi",
+      "zh",
+      "pt"
+    ]
+  },
+  "buckets": {
+    "markdown": {
+      "include": [
+        "docs/**/*.md"
+      ]
+    }
+  },
+  "provider": {
+    "id": "lingo.dev",
+    "apiKey": "$LINGODOTDEV_API_KEY",
+    "model": "gpt-4",
+    "prompt": "Translate the following content to {{target_language}}:"
+  },
+  "output": {
+    "structure": "locale/file",
+    "overwrite": true
+  }
+}
