@@ -1,110 +1,162 @@
+'use client';
+
 import Hero from '../components/Hero';
+import { motion } from 'framer-motion';
 
 export default function Home() {
+  const features = [
+    {
+      icon: '⚡',
+      title: 'Instant Translation',
+      description: 'From 1 language to 8 languages in seconds. No waiting. No manual work.',
+      gradient: 'from-yellow-400 to-orange-500',
+      bgGradient: 'from-yellow-50 to-orange-50'
+    },
+    {
+      icon: '🤖',
+      title: 'AI-Powered',
+      description: 'Uses GPT-4 for context-aware, accurate translations that preserve technical meaning.',
+      gradient: 'from-blue-400 to-purple-500',
+      bgGradient: 'from-blue-50 to-purple-50'
+    },
+    {
+      icon: '🔄',
+      title: 'Fully Automated',
+      description: 'GitHub Actions automatically updates translations on every commit. Set it and forget it.',
+      gradient: 'from-green-400 to-teal-500',
+      bgGradient: 'from-green-50 to-teal-50'
+    }
+  ];
+
+  const benefits = [
+    { text: 'Reach global developers with multilingual docs', icon: '🌍' },
+    { text: 'Save hundreds of hours on manual translation', icon: '⏱️' },
+    { text: 'Keep translations in sync automatically', icon: '🔄' },
+    { text: 'Affordable: ~$0.50 for 45,000 words', icon: '💰' }
+  ];
+
+  const stats = [
+    { label: 'Translation Speed', value: '30 sec', percentage: 95, colorClass: 'text-purple-400' },
+    { label: 'Accuracy', value: '96%', percentage: 96, colorClass: 'text-purple-400' },
+    { label: 'Cost Savings', value: '99%', percentage: 99, colorClass: 'text-purple-400' }
+  ];
+
   return (
     <div>
       <Hero />
 
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Why DevDocs Global?
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary-500/5 to-transparent"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Why <span className="gradient-text">DevDocs Global</span>?
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               Stop manually translating documentation. Let AI do the heavy lifting while you focus on building great products.
             </p>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
-              <div className="text-5xl mb-4">⚡</div>
-              <h3 className="text-xl font-bold mb-2">Instant Translation</h3>
-              <p className="text-gray-600">
-                From 1 language to 8 languages in seconds. No waiting. No manual work.
-              </p>
-            </div>
-
-            <div className="text-center p-6">
-              <div className="text-5xl mb-4">🤖</div>
-              <h3 className="text-xl font-bold mb-2">AI-Powered</h3>
-              <p className="text-gray-600">
-                Uses GPT-4 for context-aware, accurate translations that preserve technical meaning.
-              </p>
-            </div>
-
-            <div className="text-center p-6">
-              <div className="text-5xl mb-4">🔄</div>
-              <h3 className="text-xl font-bold mb-2">Fully Automated</h3>
-              <p className="text-gray-600">
-                GitHub Actions automatically updates translations on every commit. Set it and forget it.
-              </p>
-            </div>
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="bg-gray-900 p-8 rounded-lg border border-gray-800 hover:border-purple-600 transition-colors duration-200 group"
+              >
+                <div>
+                  <div className={`text-6xl mb-6 transform group-hover:scale-110 transition-transform duration-300`}>
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
+                  <p className="text-gray-400 leading-relaxed text-sm">
+                    {feature.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 bg-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.1),transparent_50%)]"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                Perfect for Open Source Projects
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                Perfect for <span className="gradient-text">Open Source</span> Projects
               </h2>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">✓</span>
-                  <span>Reach global developers with multilingual docs</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">✓</span>
-                  <span>Save hundreds of hours on manual translation</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">✓</span>
-                  <span>Keep translations in sync automatically</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-primary mr-2">✓</span>
-                  <span>Affordable: ~$0.50 for 45,000 words</span>
-                </li>
+              <ul className="space-y-4">
+                {benefits.map((benefit, index) => (
+                  <motion.li
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="flex items-start group"
+                  >
+                    <span className="flex-shrink-0 w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center text-xl mr-4 group-hover:bg-purple-700 transition-colors">
+                      {benefit.icon}
+                    </span>
+                    <span className="text-lg text-gray-300 pt-2">{benefit.text}</span>
+                  </motion.li>
+                ))}
               </ul>
-            </div>
+            </motion.div>
 
-            <div className="bg-white p-8 rounded-lg shadow-lg">
-              <h3 className="text-xl font-bold mb-4">Quick Stats</h3>
-              <div className="space-y-4">
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm font-medium">Translation Speed</span>
-                    <span className="text-sm font-bold text-primary">30 sec</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-primary h-2 rounded-full" style={{width: '95%'}}></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm font-medium">Accuracy</span>
-                    <span className="text-sm font-bold text-primary">96%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-secondary h-2 rounded-full" style={{width: '96%'}}></div>
-                  </div>
-                </div>
-
-                <div>
-                  <div className="flex justify-between mb-1">
-                    <span className="text-sm font-medium">Cost Savings</span>
-                    <span className="text-sm font-bold text-accent">99%</span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div className="bg-accent h-2 rounded-full" style={{width: '99%'}}></div>
-                  </div>
-                </div>
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-gray-900 p-8 rounded-lg border border-gray-800"
+            >
+              <h3 className="text-xl font-semibold text-white mb-6">
+                Quick Stats
+              </h3>
+              <div className="space-y-6">
+                {stats.map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                  >
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-sm font-semibold text-gray-300">{stat.label}</span>
+                      <span className={`text-sm font-bold ${stat.colorClass}`}>{stat.value}</span>
+                    </div>
+                    <div className="w-full bg-gray-800 rounded-full h-2 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${stat.percentage}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: index * 0.2, ease: "easeOut" }}
+                        className="bg-purple-600 h-2 rounded-full"
+                      ></motion.div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

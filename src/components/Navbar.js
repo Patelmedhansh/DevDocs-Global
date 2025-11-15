@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -14,28 +15,42 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <nav className="bg-black sticky top-0 z-50 border-b border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex">
-            <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-primary">🌍 DevDocs Global</span>
+        <div className="flex justify-between items-center h-20">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Link href="/" className="flex items-center space-x-2 group">
+              <div className="relative">
+                <div className="relative text-white px-4 py-2 font-bold text-lg">
+                  🌍 DevDocs Global
+                </div>
+              </div>
             </Link>
-          </div>
+          </motion.div>
 
-          <div className="flex items-center space-x-8">
-            {links.map((link) => (
-              <Link
+          <div className="flex items-center space-x-1">
+            {links.map((link, index) => (
+              <motion.div
                 key={link.href}
-                href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  pathname === link.href
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-gray-700'
-                }`}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                {link.label}
-              </Link>
+                <Link
+                  href={link.href}
+                  className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                    pathname === link.href
+                      ? 'text-purple-400 border-b-2 border-purple-500'
+                      : 'text-gray-400 hover:text-white'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
