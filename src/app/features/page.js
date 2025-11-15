@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import FeatureCard from '../../components/FeatureCard';
 
 export default function Features() {
@@ -24,19 +27,30 @@ export default function Features() {
     }
   ];
 
+  const stats = [
+    { value: '30 sec', label: 'Translation Time' },
+    { value: '$0.47', label: 'Cost for 45K words' },
+    { value: '96%', label: 'Average Accuracy' }
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Smart Features That Make Judges Love It
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+            Smart Features That Make <span className="gradient-text">Judges Love It</span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             DevDocs Global isn't just a translation tool — it's an intelligent automation system that solves real problems for developers worldwide.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 gap-8 mb-16">
           {features.map((feature, index) => (
             <FeatureCard
               key={index}
@@ -48,47 +62,88 @@ export default function Features() {
           ))}
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            Example: Smart Text Extraction
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-gray-900 rounded-lg p-8 md:p-12 mb-16 border border-gray-800"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
+            Example: <span className="gradient-text">Smart Text Extraction</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="font-bold mb-3 text-gray-700">Input (English):</h3>
-<div className="bg-gray-900 text-green-400 p-4 rounded font-mono text-sm">
-  <pre>{"# Getting Started\n\nInstall the package:\n\n```bash\nnpm install @api/sdk\n```\n\nSee [docs](./api.md)\n"}</pre>
-</div>
-            </div>
-
-            <div>
-              <h3 className="font-bold mb-3 text-gray-700">What Gets Translated:</h3>
-              <div className="bg-blue-50 border-2 border-primary p-4 rounded">
-                <p className="mb-2">✅ <strong>"Getting Started"</strong> → Translated</p>
-                <p className="mb-2">✅ <strong>"Install the package"</strong> → Translated</p>
-                <p className="mb-2">❌ <strong>npm install @api/sdk</strong> → Skipped (code)</p>
-                <p className="mb-2">✅ <strong>"docs"</strong> → Translated</p>
-                <p>❌ <strong>./api.md</strong> → Skipped (URL)</p>
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="font-bold mb-4 text-white flex items-center">
+                <span className="w-2 h-2 bg-primary-500 rounded-full mr-2"></span>
+                Input (English):
+              </h3>
+              <div className="bg-gray-900 text-green-400 p-6 rounded-xl font-mono text-sm shadow-large border border-gray-800">
+                <pre className="whitespace-pre-wrap overflow-x-auto">{"# Getting Started\n\nInstall the package:\n\n```bash\nnpm install @api/sdk\n```\n\nSee [docs](./api.md)\n"}</pre>
               </div>
-            </div>
-          </div>
-        </div>
+            </motion.div>
 
-        <div className="mt-12 grid md:grid-cols-3 gap-6 text-center">
-          <div className="bg-primary text-white p-6 rounded-lg">
-            <div className="text-4xl font-bold mb-2">30 sec</div>
-            <div className="text-sm">Translation Time</div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="font-bold mb-4 text-white flex items-center">
+                <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                What Gets Translated:
+              </h3>
+              <div className="bg-gray-800 border border-purple-600/30 p-6 rounded-lg">
+                <div className="space-y-3">
+                  <p className="flex items-center text-gray-300">
+                    <span className="text-green-400 mr-2 font-bold">✅</span>
+                    <span><strong>"Getting Started"</strong> → Translated</span>
+                  </p>
+                  <p className="flex items-center text-gray-300">
+                    <span className="text-green-400 mr-2 font-bold">✅</span>
+                    <span><strong>"Install the package"</strong> → Translated</span>
+                  </p>
+                  <p className="flex items-center text-gray-300">
+                    <span className="text-red-400 mr-2 font-bold">❌</span>
+                    <span><strong>npm install @api/sdk</strong> → Skipped (code)</span>
+                  </p>
+                  <p className="flex items-center text-gray-300">
+                    <span className="text-green-400 mr-2 font-bold">✅</span>
+                    <span><strong>"docs"</strong> → Translated</span>
+                  </p>
+                  <p className="flex items-center text-gray-300">
+                    <span className="text-red-400 mr-2 font-bold">❌</span>
+                    <span><strong>./api.md</strong> → Skipped (URL)</span>
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
+        </motion.div>
 
-          <div className="bg-secondary text-white p-6 rounded-lg">
-            <div className="text-4xl font-bold mb-2">$0.47</div>
-            <div className="text-sm">Cost for 45K words</div>
-          </div>
-
-          <div className="bg-accent text-white p-6 rounded-lg">
-            <div className="text-4xl font-bold mb-2">96%</div>
-            <div className="text-sm">Average Accuracy</div>
-          </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -4, scale: 1.02 }}
+              className="bg-purple-600 text-white p-8 rounded-lg hover:bg-purple-700 transition-colors cursor-pointer group"
+            >
+              <div className="text-5xl font-bold mb-3 group-hover:scale-105 transition-transform">
+                {stat.value}
+              </div>
+              <div className="text-sm font-semibold opacity-90">{stat.label}</div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </div>
