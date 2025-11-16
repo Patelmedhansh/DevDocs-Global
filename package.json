@@ -63,8 +63,8 @@
     "lingo:init": "npx lingo.dev@latest init",
     "lingo:translate": "npx lingo.dev@latest translate",
     "lingo:ci": "npx lingo.dev@latest ci",
-    "prepare": "node -e \"if(process.env.NODE_ENV!=='production'){console.log('DevDocs Global is ready!')}\"",
-    "prepublishOnly": "npm run lint && npm run build"
+    "prepare": "node -e \"if(process.env.NODE_ENV!=='production'){console.log('DevDocs Global is ready!')}\""
+    
   },
   "files": [
     "src/",
@@ -84,11 +84,13 @@
     "lingo.dev": "^0.115.0",
     "marked": "^9.1.0",
     "next": "^14.2.33",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
+    "eslint": "8.57.1",
+    "eslint-config-next": "16.0.3",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5"
   },
@@ -96,7 +98,6 @@
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0"
   },
-  "optionalDependencies": {},
   "browserslist": {
     "production": [
       ">0.2%",
