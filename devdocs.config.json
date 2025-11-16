@@ -1,0 +1,15 @@
+{
+  "sourceLanguage": "auto",
+  "sourceDir": "./docs",
+  "targetLanguages": [
+    "es",
+    "fr",
+    "de",
+    "ja",
+    "hi",
+    "zh"
+  ],
+  "outputDir": "./docs",
+  "apiKey": "api_oh5a80ehmkf8zqxptweujm12",
+  "cacheDir": "./.lingo-cache"
+}

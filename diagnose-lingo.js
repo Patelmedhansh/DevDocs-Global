@@ -66,7 +66,7 @@ export async function POST(request) {
 
     for (const targetLang of targetLanguages) {
       try {
-        console.log(\`🔄 Translating to \${targetLang}...\`);
+        console.log(`🔄 Translating to ${targetLang}...`);
 
         const translatedText = await lingo.localizeText(content, {
           sourceLocale: sourceLanguage === 'auto' ? null : sourceLanguage,
@@ -74,7 +74,7 @@ export async function POST(request) {
         });
 
         if (!translatedText) {
-          console.warn(\`⚠️  Empty response for \${targetLang}\`);
+          console.warn(`⚠️  Empty response for ${targetLang}`);
           translations[targetLang] = content; // Fallback
           scores[targetLang] = 0;
           continue;
@@ -83,15 +83,15 @@ export async function POST(request) {
         translations[targetLang] = translatedText;
         scores[targetLang] = 95 + Math.floor(Math.random() * 5); // 95-99%
 
-        console.log(\`✓ Translated to \${targetLang} (${translatedText.length} chars)\`);
+        console.log(`✓ Translated to ${targetLang} (${translatedText.length} chars)`);
       } catch (langError) {
-        console.error(\`❌ Failed to translate to \${targetLang}:\`, langError.message);
+        console.error(`❌ Failed to translate to ${targetLang}:`, langError.message);
 
         // Return error for this language
         return NextResponse.json(
           {
             success: false,
-            error: \`Failed to translate to \${targetLang}: \${langError.message}\`,
+            error: `Failed to translate to ${targetLang}: ${langError.message}`,
           },
           { status: 500 }
         );

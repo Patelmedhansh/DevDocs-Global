@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+import 'dotenv/config';
 import fs from 'fs';
 import path from 'path';
 import { program } from 'commander';
@@ -29,13 +29,13 @@ program
       sourceDir: './docs',
       targetLanguages: ['es', 'fr', 'de', 'ja', 'hi', 'zh'],
       outputDir: './docs',
-      apiKey: process.env.LINGO_API_KEY || 'your-lingo-api-key',
+      apiKey: process.env.LINGODOTDEV_API_KEY || 'your-lingo-api-key',
       cacheDir: './.lingo-cache'
     };
 
     fs.writeFileSync('devdocs.config.json', JSON.stringify(config, null, 2));
     console.log(chalk.green('✅ Created devdocs.config.json'));
-    console.log(chalk.yellow('⚠️  Set LINGO_API_KEY environment variable before running translate command\n'));
+    console.log(chalk.yellow('⚠️  Set LINGODOTDEV_API_KEY environment variable before running translate command\n'));
   });
 
 // Translate command - Main translation engine
@@ -57,7 +57,7 @@ program
         sourceDir: './docs',
         targetLanguages: ['es', 'fr', 'de', 'ja', 'hi', 'zh'],
         outputDir: './docs',
-        apiKey: process.env.LINGO_API_KEY
+        apiKey: process.env.LINGODOTDEV_API_KEY
       };
 
       if (fs.existsSync('devdocs.config.json')) {
@@ -72,7 +72,7 @@ program
 
       // Validate API key
       if (!config.apiKey) {
-        console.log(chalk.red('❌ LINGO_API_KEY not found in environment variables'));
+        console.log(chalk.red('❌ LINGODOTDEV_API_KEY not found in environment variables'));
         process.exit(1);
       }
 
@@ -138,11 +138,22 @@ program
               metadata
             );
 
-            // Write translated file
-            const targetPath = sourceFile.replace(
-              `/${detectedLanguage}/`,
-              `/${targetLang}/`
-            );
+            // Write translated file - FIXED PATH LOGIC
+            // Build correct target path using path.sep (works on Windows & Mac/Linux)
+            let targetPath;
+
+            if (sourceFile.includes(`${detectedLanguage}${path.sep}`)) {
+              // Replace language folder in path
+              targetPath = sourceFile.replace(
+                `${detectedLanguage}${path.sep}`,
+                `${targetLang}${path.sep}`
+              );
+            } else {
+              // Fallback: place in language folder
+              const dir = path.dirname(sourceFile);
+              const file = path.basename(sourceFile);
+              targetPath = path.join(dir, targetLang, file);
+            }
 
             const targetDir = path.dirname(targetPath);
             if (!fs.existsSync(targetDir)) {
