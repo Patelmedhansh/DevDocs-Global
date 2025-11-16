@@ -10,38 +10,62 @@ on:
   pull_request:
     branches: [ main ]
 
+# ✅ FIX 1: Add workflow permissions
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   translate:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'          # ✅ UPDATED
+        node-version: '20'
         cache: 'npm'
 
     - name: Install dependencies
       run: npm ci
 
+    # ✅ FIX 2: Clean old translations before running
+    - name: Clean old translations
+      run: |
+        echo "Removing old translation folders..."
+        rm -rf docs/es docs/fr docs/de docs/ja docs/hi docs/zh
+        echo "✓ Old translations cleaned"
+
     - name: Run translations
       env:
-        LINGODOTDEV_API_KEY: ${{ secrets.LINGODOTDEV_API_KEY }}
-      run: npm run translate
-
-    - name: Commit translations
+        LINGODOTDEV_API_KEY: \${{ secrets.LINGODOTDEV_API_KEY }}
       run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        
+        echo "Starting translation process..."
+        npm run translate
+        echo "✓ Translation complete"
+
+    # ✅ FIX 3: Configure git user
+    - name: Configure git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+    # ✅ FIX 4: Commit and push with GITHUB_TOKEN
+    - name: Commit and push translations
+      env:
+        GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+      run: |
         if git diff --quiet; then
-          echo "No changes to commit"
+          echo "✓ No changes to commit"
         else
+          echo "Committing translations..."
           git add docs/
-          git commit -m "🌍 Auto-translate: Documentation updated"
-          git push
+          git commit -m "🌍 chore: Auto-translate documentation"
+          git push origin main
+          echo "✓ Translations pushed successfully"
         fi

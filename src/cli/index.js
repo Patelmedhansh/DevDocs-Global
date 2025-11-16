@@ -25,7 +25,7 @@ program
     console.log(chalk.blue('\n🚀 Initializing DevDocs Global...\n'));
 
     const config = {
-      sourceLanguage: 'auto', // Auto-detect or specify
+      sourceLanguage: 'en',
       sourceDir: './docs',
       targetLanguages: ['es', 'fr', 'de', 'ja', 'hi', 'zh'],
       outputDir: './docs',
@@ -53,7 +53,7 @@ program
 
       // Load config
       let config = {
-        sourceLanguage: 'auto',
+        sourceLanguage: 'en',
         sourceDir: './docs',
         targetLanguages: ['es', 'fr', 'de', 'ja', 'hi', 'zh'],
         outputDir: './docs',
@@ -66,7 +66,7 @@ program
 
       // Override with CLI options
       if (options.source) config.sourceLanguage = options.source;
-      if (options.targets) config.targetLanguages = options.targets.split(',');
+      if (options.targets) config.targetLanguages = options.targets.split(',').map(t => t.trim());
       if (options.sourceDir) config.sourceDir = options.sourceDir;
       if (options.outputDir) config.outputDir = options.outputDir;
 
@@ -81,9 +81,17 @@ program
       const cache = new TranslationCache(config.cacheDir || './.lingo-cache');
       const translator = new LingoTranslator(config.apiKey);
 
-      // Step 1: Find all source files
+      // ✅ FIX: Only scan source language folder to prevent recursive loop
       console.log(chalk.cyan('📂 Scanning documentation files...'));
-      const sourceFiles = extractor.findMarkdownFiles(config.sourceDir);
+      const sourceLangDir = path.join(config.sourceDir, config.sourceLanguage);
+
+      if (!fs.existsSync(sourceLangDir)) {
+        console.log(chalk.red(`❌ Source language folder not found: ${sourceLangDir}`));
+        console.log(chalk.yellow(`Create it with: mkdir -p ${sourceLangDir}`));
+        process.exit(1);
+      }
+
+      const sourceFiles = extractor.findMarkdownFiles(sourceLangDir);
       console.log(chalk.green('Found ' + sourceFiles.length + ' markdown files\n'));
 
       let totalTranslated = 0;
@@ -95,12 +103,9 @@ program
         // Read file content
         const content = fs.readFileSync(sourceFile, 'utf-8');
 
-        // Detect source language if auto
+        // Detect source language
         let detectedLanguage = config.sourceLanguage;
-        if (detectedLanguage === 'auto') {
-          detectedLanguage = await detectLanguage(content);
-          console.log(chalk.gray(`   Detected language: ${detectedLanguage}`));
-        }
+        console.log(chalk.gray(`   Detected language: ${detectedLanguage}`));
 
         // Extract translatable text
         const { text, metadata } = extractor.extractText(content);
@@ -138,22 +143,9 @@ program
               metadata
             );
 
-            // Write translated file - FIXED PATH LOGIC
-            // Build correct target path using path.sep (works on Windows & Mac/Linux)
-            let targetPath;
-
-            if (sourceFile.includes(`${detectedLanguage}${path.sep}`)) {
-              // Replace language folder in path
-              targetPath = sourceFile.replace(
-                `${detectedLanguage}${path.sep}`,
-                `${targetLang}${path.sep}`
-              );
-            } else {
-              // Fallback: place in language folder
-              const dir = path.dirname(sourceFile);
-              const file = path.basename(sourceFile);
-              targetPath = path.join(dir, targetLang, file);
-            }
+            // ✅ FIX: Correct path logic - save to docs/[lang]/ not docs/en/[lang]/
+            const relativePath = path.relative(sourceLangDir, sourceFile);
+            const targetPath = path.join(config.sourceDir, targetLang, relativePath);
 
             const targetDir = path.dirname(targetPath);
             if (!fs.existsSync(targetDir)) {
@@ -213,7 +205,7 @@ program
     }
 
     console.log('Configuration:');
-    console.log(`  Source Language: ${config.sourceLanguage || 'auto'}`);
+    console.log(`  Source Language: ${config.sourceLanguage || 'en'}`);
     console.log(`  Target Languages: ${(config.targetLanguages || []).join(', ')}`);
     console.log(`  Source Dir: ${config.sourceDir || './docs'}`);
     console.log(`  Output Dir: ${config.outputDir || './docs'}\n`);
