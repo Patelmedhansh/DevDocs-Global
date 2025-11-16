@@ -52,6 +52,15 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+    - name: Add changes
+      run: git add .lingo-cache/docs_en_getting_started_md.json
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git commit -m "Update docs_en_getting_started_md.json" || echo "No changes to commit"
+
     - name: Commit and push translations
       env:
         GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
