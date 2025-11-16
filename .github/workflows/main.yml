@@ -52,8 +52,18 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-    - name: Add changes
-      run: git add .lingo-cache/docs_en_getting_started_md.json
+    - name: Add cache file (safe)
+      run: |
+        FILE=".lingo-cache/docs_en_getting_started_md.json"
+        if [ -f "$FILE" ]; then
+          if git check-ignore -q "$FILE"; then
+            echo "$FILE is ignored by .gitignore; skipping add"
+          else
+            git add "$FILE"
+          fi
+        else
+          echo "No cache file to add; skipping"
+        fi
 
     - name: Commit changes
       run: |
