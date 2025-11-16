@@ -1,0 +1,10 @@
+.git
+.github
+.env
+.env.local
+.lingo-cache
+docs/
+.DS_Store
+*.log
+node_modules/
+.next/

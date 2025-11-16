@@ -2,8 +2,54 @@
   "name": "devdocs-global",
   "version": "2.0.0",
   "description": "🌍 AI-powered multilingual documentation with Lingo integration",
+  "long_description": "DevDocs Global is a full-stack application for translating documentation into multiple languages using AI-powered Lingo.dev SDK. Includes web dashboard, CLI tool, and GitHub Actions automation.",
   "type": "module",
-  "private": true,
+  "main": "src/cli/index.js",
+  "bin": {
+    "devdocs-global": "src/cli/index.js"
+  },
+  "keywords": [
+    "translation",
+    "documentation",
+    "ai",
+    "multilingual",
+    "markdown",
+    "cli",
+    "lingo",
+    "i18n",
+    "internationalization",
+    "devdocs",
+    "github-actions",
+    "automation"
+  ],
+  "author": {
+    "name": "Medhansh Patel",
+    "email": "medhanshpatel18@gmail.com",
+    "url": "https://github.com/Patelmedhansh"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Patelmedhansh/DevDocs-Global.git",
+    "directory": "."
+  },
+  "homepage": "https://github.com/Patelmedhansh/DevDocs-Global#readme",
+  "bugs": {
+    "url": "https://github.com/Patelmedhansh/DevDocs-Global/issues",
+    "email": "medhanshpatel18@gmail.com"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/Patelmedhansh"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,14 +59,27 @@
     "translate": "node src/cli/index.js translate",
     "detect": "node src/cli/index.js detect",
     "init": "node src/cli/index.js init",
+    "status": "node src/cli/index.js status",
     "lingo:init": "npx lingo.dev@latest init",
     "lingo:translate": "npx lingo.dev@latest translate",
-    "lingo:ci": "npx lingo.dev@latest ci"
+    "lingo:ci": "npx lingo.dev@latest ci",
+    "prepare": "node -e \"if(process.env.NODE_ENV!=='production'){console.log('DevDocs Global is ready!')}\"",
+    "prepublishOnly": "npm run lint && npm run build"
   },
+  "files": [
+    "src/",
+    "public/",
+    ".next/",
+    "next.config.js",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "axios": "^1.6.0",
     "chalk": "^5.3.0",
     "commander": "^11.0.0",
+    "dotenv": "^16.3.1",
     "framer-motion": "^10.16.0",
     "lingo.dev": "^0.115.0",
     "marked": "^9.1.0",
@@ -32,5 +91,22 @@
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
+  "optionalDependencies": {},
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
