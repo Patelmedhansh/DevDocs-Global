@@ -171,7 +171,7 @@ export default function TranslationDashboard() {
           className="mb-8"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">
-            🌍 Live Translation <span className="gradient-text">Dashboard</span>
+            Live Translation <span className="gradient-text">Dashboard</span>
           </h1>
           <p className="text-xl text-gray-300">
             Upload or paste your document. Supports any source language. Translate to multiple languages instantly.

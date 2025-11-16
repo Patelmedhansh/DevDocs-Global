@@ -1,4 +1,8 @@
-# DevDocs Global 🌍
+<div align="center">
+  <img src="public/logo.png" alt="DevDocs Global Logo" width="120" />
+</div>
+
+# DevDocs Global
 
 [![npm version](https://badge.fury.io/js/devdocs-global.svg)](https://badge.fury.io/js/devdocs-global)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -13,7 +17,7 @@ Translate your documentation into **6+ languages** automatically using Lingo.dev
 - 🚀 **Full-Stack Application** - Web dashboard + CLI tool + GitHub Actions automation
 - 🤖 **AI-Powered Translation** - Uses Lingo.dev SDK with GPT-4 precision
 - 📝 **Markdown Support** - Preserves formatting, code blocks, and links
-- 🌍 **Multi-Language** - Translates to Spanish, French, German, Japanese, Hindi, Chinese
+- 🌐 **Multi-Language** - Translates to Spanish, French, German, Japanese, Hindi, Chinese
 - ⚡ **Smart Caching** - Incremental translations save time and API costs
 - 🔄 **GitHub Actions** - Auto-translate on every push
 - 💾 **Quality Metrics** - 95-99% translation accuracy
@@ -283,7 +287,7 @@ jobs:
         git config user.email "github-actions[bot]@users.noreply.github.com"
         if ! git diff --quiet; then
           git add docs/
-          git commit -m "🌍 chore: Auto-translate documentation"
+          git commit -m "chore: Auto-translate documentation"
           git push origin main
         fi
 ```

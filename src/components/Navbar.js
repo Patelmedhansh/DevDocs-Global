@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
@@ -24,10 +25,15 @@ export default function Navbar() {
             transition={{ duration: 0.5 }}
           >
             <Link href="/" className="flex items-center space-x-2 group">
-              <div className="relative">
-                <div className="relative text-white px-4 py-2 font-bold text-lg">
-                  🌍 DevDocs Global
-                </div>
+              <div className="relative flex items-center space-x-2">
+                <Image
+                  src="/logo.png"
+                  alt="DevDocs Global Logo"
+                  width={56}
+                  height={56}
+                  className="object-contain"
+                  priority
+                />
               </div>
             </Link>
           </motion.div>

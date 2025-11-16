@@ -7,32 +7,32 @@ export default function Home() {
   const features = [
     {
       icon: '⚡',
-      title: 'Instant Translation',
-      description: 'From 1 language to 8 languages in seconds. No waiting. No manual work.',
+      title: 'High-Performance Translation',
+      description: 'Transform documentation from one language to six languages in seconds. Enterprise-grade speed with zero manual intervention. Install via npm: devdocs-global',
       gradient: 'from-yellow-400 to-orange-500',
       bgGradient: 'from-yellow-50 to-orange-50'
     },
     {
       icon: '🤖',
-      title: 'AI-Powered',
-      description: 'Uses GPT-4 for context-aware, accurate translations that preserve technical meaning.',
+      title: 'Advanced AI Technology',
+      description: 'Powered by GPT-4 for context-aware, precise translations that maintain technical accuracy and preserve original meaning.',
       gradient: 'from-blue-400 to-purple-500',
       bgGradient: 'from-blue-50 to-purple-50'
     },
     {
       icon: '🔄',
-      title: 'Fully Automated',
-      description: 'GitHub Actions automatically updates translations on every commit. Set it and forget it.',
+      title: 'Complete Automation',
+      description: 'GitHub Actions integration automatically processes translations on every commit. Configure once, maintain forever.',
       gradient: 'from-green-400 to-teal-500',
       bgGradient: 'from-green-50 to-teal-50'
     }
   ];
 
   const benefits = [
-    { text: 'Reach global developers with multilingual docs', icon: '🌍' },
-    { text: 'Save hundreds of hours on manual translation', icon: '⏱️' },
-    { text: 'Keep translations in sync automatically', icon: '🔄' },
-    { text: 'Affordable: ~$0.50 for 45,000 words', icon: '💰' }
+    { text: 'Expand global reach with comprehensive multilingual documentation', icon: '🌍' },
+    { text: 'Reduce translation overhead by hundreds of hours annually', icon: '⏱️' },
+    { text: 'Maintain translation synchronization across all languages automatically', icon: '🔄' },
+    { text: 'Cost-effective pricing: approximately $0.50 per 45,000 words', icon: '💰' }
   ];
 
   const stats = [
@@ -56,10 +56,10 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Why <span className="gradient-text">DevDocs Global</span>?
+              Why Choose <span className="gradient-text">DevDocs Global</span>?
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Stop manually translating documentation. Let AI do the heavy lifting while you focus on building great products.
+              Eliminate manual translation workflows. Our AI-powered platform handles multilingual documentation while your team focuses on core product development.
             </p>
           </motion.div>
 
@@ -100,7 +100,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                Perfect for <span className="gradient-text">Open Source</span> Projects
+                Ideal for <span className="gradient-text">Enterprise</span> & Open Source Projects
               </h2>
               <ul className="space-y-4">
                 {benefits.map((benefit, index) => (
@@ -129,7 +129,7 @@ export default function Home() {
               className="bg-gray-900 p-8 rounded-lg border border-gray-800"
             >
               <h3 className="text-xl font-semibold text-white mb-6">
-                Quick Stats
+                Performance Metrics
               </h3>
               <div className="space-y-6">
                 {stats.map((stat, index) => (

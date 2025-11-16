@@ -7,30 +7,35 @@ export default function Features() {
   const features = [
     {
       icon: '🔍',
-      title: 'Smart Text Extraction',
-      description: 'Intelligently extracts only translatable text while preserving code blocks, URLs, and markdown formatting. Your technical content stays intact.'
+      title: 'Intelligent Text Extraction',
+      description: 'Advanced parsing algorithms extract only translatable content while preserving code blocks, URLs, and markdown structure. Technical documentation integrity maintained throughout the translation process.'
     },
     {
       icon: '💰',
-      title: 'Incremental Translation',
-      description: 'Only translates new or changed content. First run costs ~$0.50 for 45,000 words. Subsequent updates cost pennies. Maximum cost efficiency.'
+      title: 'Incremental Translation Engine',
+      description: 'Optimized translation processing that only handles new or modified content. Initial translation costs approximately $0.50 for 45,000 words, with subsequent updates at minimal cost for maximum operational efficiency.'
     },
     {
       icon: '🤖',
-      title: 'GitHub Automation',
-      description: 'Set it once, forget it forever. Every git push automatically triggers translation, commit, and deployment. No human intervention needed.'
+      title: 'Seamless GitHub Integration',
+      description: 'One-time configuration enables automatic translation workflows. Every git push triggers translation processing, commit generation, and deployment synchronization without manual intervention.'
     },
     {
       icon: '📊',
-      title: 'Quality Dashboard',
-      description: 'Visual side-by-side comparison with quality scores. Verify translations easily and download everything as ZIP with one click.'
+      title: 'Quality Assurance Dashboard',
+      description: 'Comprehensive visual interface with side-by-side comparison views and quality metrics. Streamlined translation verification with bulk export capabilities via single-click ZIP download.'
+    },
+    {
+      icon: '📦',
+      title: 'npm Package & CLI Tool',
+      description: 'Install globally or locally via npm: devdocs-global. Full-featured CLI tool for command-line usage and CI/CD pipeline integration. Use from terminal or automate in GitHub Actions workflows.'
     }
   ];
 
   const stats = [
-    { value: '30 sec', label: 'Translation Time' },
-    { value: '$0.47', label: 'Cost for 45K words' },
-    { value: '96%', label: 'Average Accuracy' }
+    { value: '30 sec', label: 'Average Processing Time' },
+    { value: '$0.47', label: 'Cost per 45K Words' },
+    { value: '96%', label: 'Translation Accuracy Rate' }
   ];
 
   return (
@@ -43,10 +48,10 @@ export default function Features() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            Smart Features That Make <span className="gradient-text">Judges Love It</span>
+            Enterprise Features for <span className="gradient-text">Modern Development Teams</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            DevDocs Global isn't just a translation tool — it's an intelligent automation system that solves real problems for developers worldwide.
+            DevDocs Global is a comprehensive translation automation platform designed to address the multilingual documentation challenges faced by development teams and organizations worldwide.
           </p>
         </motion.div>
 
@@ -70,7 +75,7 @@ export default function Features() {
           className="bg-gray-900 rounded-lg p-8 md:p-12 mb-16 border border-gray-800"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
-            Example: <span className="gradient-text">Smart Text Extraction</span>
+            Technical Example: <span className="gradient-text">Intelligent Text Extraction</span>
           </h2>
 
           <div className="grid md:grid-cols-2 gap-8">

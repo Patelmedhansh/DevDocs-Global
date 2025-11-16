@@ -26,7 +26,7 @@ export default function Hero() {
             className="mb-6"
           >
             <span className="inline-block px-4 py-2 bg-purple-900/30 border border-purple-800 text-purple-300 rounded-full text-sm font-medium mb-4">
-              ✨ AI-Powered Translation Platform
+              Enterprise-Grade AI Translation Platform
             </span>
           </motion.div>
 
@@ -38,7 +38,7 @@ export default function Hero() {
           >
             <span className="text-white">Translate your documentation into</span>
             <br />
-            <span className="gradient-text">8 languages</span>
+            <span className="gradient-text">6 languages</span>
             <br />
             <span className="text-white">instantly and automatically</span>
           </motion.h1>
@@ -49,8 +49,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            DevDocs Global combines GitHub automation and AI translation for seamless multilingual documentation.
-            <span className="block mt-2 text-lg text-gray-400">No manual work. No delays. Just instant, accurate translations.</span>
+            DevDocs Global integrates GitHub automation with advanced AI translation technology to deliver enterprise-grade multilingual documentation solutions.
+            <span className="block mt-2 text-lg text-gray-400">Available as npm package: <code className="bg-gray-800 px-2 py-1 rounded text-purple-300">devdocs-global</code>. Automated workflows ensure consistent, accurate translations with zero manual intervention required.</span>
           </motion.p>
 
           <motion.div
@@ -64,7 +64,7 @@ export default function Hero() {
               className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors duration-200"
             >
               <span className="relative z-10 flex items-center">
-                Open Live Dashboard
+                View Translation Dashboard
                 <svg className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -74,7 +74,7 @@ export default function Hero() {
               href="/features"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium text-gray-300 hover:text-white rounded-lg border border-gray-700 hover:border-purple-600 transition-colors duration-200"
             >
-              Learn More
+              Explore Features
             </Link>
           </motion.div>
 

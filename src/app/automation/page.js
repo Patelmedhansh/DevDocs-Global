@@ -24,7 +24,7 @@ export default function Automation() {
             How <span className="gradient-text">Automation</span> Works
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Watch how your documentation transforms from English to 6 languages in just 7 minutes — completely automatically.
+            Experience seamless documentation transformation from English to six languages in approximately seven minutes through fully automated workflows.
           </p>
         </motion.div>
 
@@ -53,7 +53,7 @@ export default function Automation() {
               <h3 className="text-2xl font-bold text-white">GitHub Actions Setup</h3>
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              One-time workflow configuration that triggers translation on every push to your docs folder.
+              Single-configuration workflow setup that automatically initiates translation processing on every push to your documentation directory.
             </p>
             <div className="bg-gray-900 text-green-400 p-6 rounded-xl font-mono text-sm overflow-x-auto shadow-medium border border-gray-800">
               <pre className="whitespace-pre-wrap">{`name: Auto Translate
@@ -114,12 +114,12 @@ jobs:
           className="bg-purple-600 text-white rounded-lg p-10 text-center relative overflow-hidden"
         >
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Zero Manual Work Required</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Fully Automated Workflow</h2>
             <p className="text-xl mb-6 opacity-90">
-              After the initial 2-minute setup, every documentation update is automatically translated and committed.
+              Following the initial two-minute configuration, all documentation updates are automatically processed, translated, and committed without manual intervention.
             </p>
             <div className="inline-block bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold text-lg">
-              Save 100+ hours per year
+              Reduce manual effort by 100+ hours annually
             </div>
           </div>
         </motion.div>
